@@ -1,9 +1,9 @@
 <?php
 
 define("PHP", "<h3>O que é PHP?</h3><p>Uma linguagem de script popular de uso geral que é especialmente adequada para desenvolvimento web.
-Rápido, flexível e pragmático, o PHP alimenta tudo, desde o seu blog até os sites mais populares do mundo.</p> <a href='https://www.php.net/' class='links' target='_blank'>Saiba mais...</a>");
+Rápido, flexível e pragmático, o PHP alimenta tudo, desde o seu blog até os sites mais populares do mundo.</p> <a href='https://www.php.net/' class='links active' target='_blank'>Saiba mais...</a>");
 
-define("Array", "<h3>PHP Array</h3><p>As funções de array permitem que você acesse e manipule arrays.<br>Matrizes simples e multidimensionais são suportadas.</p> <a href='https://www.w3schools.com/PHP/php_ref_array.asp' class='links' target='_blank'>Saiba mais...</a>");
+define("Array", "<h3>PHP Array</h3><p>As funções de array permitem que você acesse e manipule arrays.<br>Matrizes simples e multidimensionais são suportadas.</p> <a href='https://www.w3schools.com/PHP/php_ref_array.asp' class='links active' target='_blank'>Saiba mais...</a>");
 
 define("Examples", "
 <h3>PHP Sintaxe</h3>

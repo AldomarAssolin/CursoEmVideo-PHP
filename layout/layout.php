@@ -1,66 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <title>Aula 01 | Variáveis PHP</title>
-</head>
-<body>
-
-<header class=" bg-dark bg-gradient w-100">
-    <nav class="navbar navbar-expand-lg">
-      <div class="container px-5">
-        <a class="navbar-brand" href="#">
-            <img src="../static/assets/images/logos/logoFullStack-recort-120x127.webp" alt="Logo Aldomar Assolin Fulstack">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav w-100 d-flex align-item-center justify-content-end">
-            <li class="nav-item">
-              <a class="nav-link text-light active" aria-current="page" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="/pages/w3sExamples.php">Exemplos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="#">Pricing</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-</header>
-
-
-
-<main>
-
-<base href="">
-
-
-
-</main>
 
 
 
 
 
-<footer class="mt-5">
-    <div class="center">
-        <p>
-            Aldomar Assolin 2024<span class="entity">&copy;</span> , Todos os direitos reservados<span class="entity">&reg;</span>.
-        </p>
-    </div>
-</footer>
+<?php
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+// Incluir o arquivo de configuração
+include_once './config/config.php';
 
-</body>
-</html>
+//Header
+include_once "./commons/header.php";
+
+?>
+
+
+<?php
+
+// Receber a URL do .htaccess. Se não existir o nome da página, carregar a página inicial (home).
+$url = (!empty(filter_input(INPUT_GET, 'url', FILTER_DEFAULT)) ? filter_input(INPUT_GET, 'url', FILTER_DEFAULT) : 'home');
+//var_dump($url);
+
+// Converter a URL de uma string para um array.
+$url = array_filter(explode('/', $url));
+//var_dump($url);
+
+// Criar o caminho da página com o nome que está na primeira posição do array criado acima e atribuir a extensão .php.
+$arquivo = 'pages/' . $url[0] . '.php';
+//var_dump($arquivo);
+
+
+
+include("./functions/constants.php");
+
+
+
+?>
+
+
+
+
+<?php
+
+
+  // Verificar se existe o arquivo no servidor. Se não existir, acessar o ELSE e carregar a página de erro.
+  switch (is_file($arquivo)) {
+                    case 'home':
+                        include $arquivo;
+                        break;
+                    case 'php-array':
+                        include $arquivo;
+                        break;
+                    case 'exercicios':
+                        include $arquivo;
+                        break;
+                    case 'operadores':
+                        include $arquivo;
+                        break;
+                    case 'w3sExamples':
+                        include $arquivo;
+                        break;
+                    case 'formularios':
+                        include $arquivo;
+                        break;
+                    case 'habitos':
+                        include $arquivo;
+                        break;
+                    case 'novohabito':
+                        include $arquivo;
+                        break;
+                    case 'inserthabito':
+                        include $arquivo;
+                        break;
+                    case 'tarefas':
+                        include $arquivo;
+                        break;
+                    case 'novatarefa':
+                        include $arquivo;
+                        break;
+                    case 'inserttarefas':
+                        include $arquivo;
+                        break;
+                    case 'listtarefas':
+                        include $arquivo;
+                        break;
+                    default:
+                        include 'pages/404.php';
+                        break;
+   }
+
+
+?>
+    
+
+
+
+
+
+<?php
+
+//Footer
+include_once "./commons/footer.php";
+
+?>

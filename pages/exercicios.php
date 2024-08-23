@@ -1,4 +1,4 @@
-
+<div class="main">
 <h2>Exercícios de operadores com PHP<h2>
 
     <article>
@@ -60,3 +60,4 @@
         ?>
         <hr>
     </article>
+    </div>

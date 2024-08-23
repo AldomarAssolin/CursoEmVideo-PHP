@@ -1,4 +1,4 @@
-<section class="header mb-5">
+<section class="header">
     <div class="container d-flex align-items-center justify-content-around">
         <div class="left w-50">
             <h1>Curso em vídeo</h1>

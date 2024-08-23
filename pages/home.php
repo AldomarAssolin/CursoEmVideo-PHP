@@ -1,14 +1,9 @@
 
-    <h2>Começando com PHP<h2>
+<?php
 
-    <article>
-        <?php echo constant("PHP") ?>
-        <hr>
-    </article>
+include_once './components/sectionBanner.php';
 
-    <article>
-        <?php
-            echo constant("Array")
-        ?>
-        <hr>
-    </article>
+?>
+<main class="container my3">
+    
+</main>

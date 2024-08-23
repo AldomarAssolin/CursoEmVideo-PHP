@@ -17,16 +17,22 @@
               <a href="<?php echo URL?>" class="<?php echo $arquivo === 'pages/home.php' ? 'active' : ''; ?> nav-link">Home</a>
             </li>
             <li class="nav-item">
-              <a href="<?php echo URL?>exercicios" class="<?php echo $arquivo === 'pages/exercicios.php' ? 'active' : ''; ?> nav-link">Exercícios</a>
+              <a href="<?php echo URLBlog?>" class="<?php echo $arquivo === 'pages/home.php' ? 'active' : ''; ?> nav-link" target="_blank">Blog</a>
             </li>
-            <li class="nav-item">
-              <a href="<?php echo URL ?>operadores" class="<?php echo $arquivo === 'pages/operadores.php' ? 'active' : ''; ?> nav-link">Operadores</a>
-            </li>
-            <li class="nav-item">
-              <a href="<?php echo URL ?>w3sExamples" class="<?php echo $arquivo === 'pages/w3sExamples.php' ? 'active' : ''; ?> nav-link">W3sExamples</a>
-            </li>
-            <li class="nav-item">
-              <a href="<?php echo URL ?>formularios" class="<?php echo $arquivo === 'pages/formularios.php' ? 'active' : ''; ?> nav-link">Formulários</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                PHP
+              </a>
+              <ul class="dropdown-menu bg-dark">
+                <li>
+                  <a href="<?php echo URL?>#" class="<?php echo $arquivo === 'pages/home.php' ? 'active' : ''; ?> nav-link">PHP</a>
+                </li>
+                
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="nav-link" href="<?php echo URL ?>tarefas">Tarefas</a></li>
+                <li><a class="nav-link" href="<?php echo URL ?>listtarefas">Lista de Tarefas</a></li>
+                <li><a class="nav-link" href="<?php echo URL ?>habitos">Hábitos</a></li>
+              </ul>
             </li>
           </ul>
         </div>

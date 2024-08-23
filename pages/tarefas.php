@@ -82,5 +82,3 @@
 
     </div>    
 </div>
-
-<div>Texto</div>

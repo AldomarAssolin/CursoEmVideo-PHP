@@ -16,29 +16,28 @@
 }
 
 :root{
-    --fnt-title: 700 2rem/1rem "Inika", serif;
-    --fnt-subtitle: 500 1.5rem/1rem "Montserrat", sans-serif;
-    --fnt-text: 300 1rem/1rem "Lato", sans-serif;
-    --clr-links: #A020F0;
-    --clr-text: #C3C3C3;
-    --clr-title: #fafafa;
-    --clr-bg: #267290;
-    --clr-links: #0058A8;
-    --clr-shadow: 15px 15px 15px #000;
-    --clr-bg-opacity: rgba(0, 0, 0, .75);
+    --fnt-title: 900 2rem/1rem "Inika", serif !important;
+    --fnt-subtitle: 500 1.5rem/1rem "Montserrat", sans-serif !important;
+    --fnt-text: 300 1rem/1rem "Lato", sans-serif !important;
+    --clr-links-secondary: #A020F0 !important;
+    /* --clr-text: #1b1a1a !important;
+    --clr-title: #0a0a0a !important; */
+    --clr-bg: #fafafa !important;
+    --clr-links: #0058A8 !important;
+    --clr-shadow: 15px 15px 15px #000 !important;
+    --clr-bg-opacity: rgba(0, 0, 0, .65) !important;
 
-    --bg-btn-github: #A020F0;
-    --bg-btn-github--hover: #a64adf;
-    --bg-btn-linkedin: #0000FF;
-    --bg-btn-linkedin--hover: #2f2ff7;
+    --bg-btn-github: #A020F0 !important;
+    --bg-btn-github--hover: #a64adf !important;
+    --bg-btn-linkedin: #0000FF !important;
+    --bg-btn-linkedin--hover: #2f2ff7 !important;
 
     --bg-section: #000080;
 }
 
+
 h1,h2 {
     font: var(--fnt-title);
-    padding: .75rem 0;
-    color: var(--clr-title) !important;
 }
 
 h3,h4,h5,h6{
@@ -46,8 +45,6 @@ h3,h4,h5,h6{
 }
 
 p, pre{
-    padding: .75rem 0;
-    color: var(--clr-text) !important;
     font: var(--fnt-text);
 }
 
@@ -57,59 +54,15 @@ pre{
     text-align: start;
 }
 
-body {
-    background: url("../assets/images/bg/bg-tech.png");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.btn_link{
+    padding: .75rem 4.5rem;
+    background-color: #000;
+    text-decoration: none;
+    color: #C3C3C3;
 }
 
-.header,
-footer {
-    width: 100%;
-    color: var(--clr-text);
-    padding: 1rem 0;
-
-    background-color: var(--clr-bg);
-}
-
-footer .center {
-    width: 25vw;
-    margin: 0 auto;
-}
-
-footer .center p {
-    position: relative;
-    padding: 0;
-}
-
-footer .center p .entity {
-    font-size: .65rem;
-    position: absolute;
-    top: -.15rem;
-}
-
-.main {
-    width: 80vw;
-    margin: auto;
-    min-height: 75vh;
-    box-shadow: var(--clr-shadow);
-    background: var(--clr-bg-opacity);
-    padding: 1rem;
-    border-radius: .5rem;
-    margin: 2rem 0;
-}
-
-article {
-    margin: 2rem;
-}
-
-.nav-link{
-    color: var(--clr-text) !important;
+.btn_link:hover{
+    background-color: #0a0a0a;
 }
 
 .btn_link_redes{
@@ -119,82 +72,36 @@ article {
     color: #C3C3C3;
 }
 
-.btn_link_github{
-    background: var(--bg-btn-github);
-}
-
-.btn_link_linkedin{
-    background: var(--bg-btn-linkedin);
-}
-
-.btn_link_github:hover{
-    background: var(--bg-btn-github--hover);
-}
-
-.btn_link_linkedin:hover{
-    background: var(--bg-btn-linkedin--hover);
-}
-
-.nav-link:hover{
-    color: var(--clr-title) !important;
-}
-
-.active{
-    color: var(--clr-links) !important;
-}
-
-.active:hover{
-    color: var(--clr-title) !important;
-}
-
-.container {
-    width: 100%;
-    max-width: 1280px;
-    margin: auto;
-}
-
 .banner{
-    background: var(--bg-section) !important;
+    background: #000080 !important;
 }
 
-.links{
-    text-decoration: none;
-    color: var(--clr-links);
-    margin: 1rem 0;
-}
-
-.nav-link:hover{
-    color: var(--clr-bg);
-}
-
-.list li a{
-    transition: .3s;
-}
-
-.list li a:hover{
-    box-shadow: 5px 5px 5px #000;
-    color: #A3A3A3 !important;
-    padding: .25rem;
-    border-radius: .75rem;
-}
 
 .navbar-brand img{
     width: 48px;
     height: 48px;
 }
 
-.results{
-    color: var(--clr-links);
-    font-size: 15pt;
+.img-card-about{
+    width: 6em;
+    height: 6em;
 }
 
-.code{
-    background: var(--clr-bg-opacity);
-    color: var(--clr-text);
-    padding: .25rem .75rem;
-    border-radius: .5rem;
+.about-img{
+    width: 17em;
+    height: 25em;
 }
 
-.habitos, .tarefas{
-    color: var(--clr-text);
+@media screen and (max-width: 668px) {
+    html {
+    font-size: .75rem;
+    }
+    .about-img{
+        width: 10em;
+        height: 8em;
+    }
+    .img-card-about{
+        width: 6em;
+        height: 6em;
+    }
 }

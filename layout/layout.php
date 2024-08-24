@@ -29,12 +29,6 @@ $url = array_filter(explode('/', $url));
 $arquivo = 'pages/' . $url[0] . '.php';
 //var_dump($arquivo);
 
-
-
-include("./functions/constants.php");
-
-
-
 ?>
 
 

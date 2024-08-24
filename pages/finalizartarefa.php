@@ -1,5 +1,5 @@
 <?php
-
+ob_start(); 
 
     $servidor = "localhost";
     $usuario = "root";
@@ -38,5 +38,5 @@
         echo '<p class="main text-danger">Id não fornecido!</p>';
     }
 
-
+    ob_end_flush();
 ?>

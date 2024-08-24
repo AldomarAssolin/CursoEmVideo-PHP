@@ -15,7 +15,7 @@
         die("Falha na conexão: " . $conexao->connect_error);
     }
     // Executa a query da variável $sql
-    $sql = "SELECT id, nome, descricao, status, data FROM tarefa";
+    $sql = "SELECT id, nome, descricao, status, data FROM tarefa ORDER BY data";
     $resultado = $conexao->query($sql);
     // Verifica se a query retornou registros
     if ($resultado->num_rows > 0) {
@@ -24,15 +24,16 @@
 
 
 
-<div class="main tarefas lista-de-tarefas">
+<div class="container">
         
+            <h2>Lista de todas as tarefas</h2>
+            <hr>
 
-            <div class="container text-start border-bottom border-success">
-            <div class="row row-cols-5">
-                <div class="col-2 my-1">Data</div>
-                <div class="col-2 my-1">Tarefa</div>
+            <div class="text-start border-bottom border-success">
+            <div class="row row-cols-4">
+                <div class="col-3 my-1">Data</div>
                 <div class="col-4 my-1">Descrição</div>
-                <div class="col-1 my-1">Status</div>
+                <div class="col-2 my-1">Status</div>
                 <div class="col-2 my-1">Ações</div>
             </div>
             </div>
@@ -41,19 +42,24 @@
                 while($registro = $resultado->fetch_assoc()){
             
             ?>
-            <div class="container text-start">
-                <div class="row row-cols-5">
-                    <div class="col-2 my-1 py-1 border-bottom"><?php echo $registro['data'] ?></div>
-                    <div class="col-2 my-1 py-1 border-bottom"><?php echo $registro['nome'] ?></div>
-                    <div class="col-4 my-1 py-1 border-bottom"><?php echo $registro['descricao'] ?></div>
-                    <div class="col-1 my-1 py-1 border-bottom">
+            <div class="text-start">
+                <div class="row row-cols-4">
+                    <div class="col-3 my-1 py-1 border-bottom"><?php echo $registro['data'] ?></div>
+                    <div class="col-4 my-1 py-1 border-bottom"><p class="text-break"><?php echo $registro['descricao'] ?></p></div>
+                    <div class="col-2 my-1 py-1 border-bottom">
                         <span class="badge <?php echo $registro['status'] === 'Aberto' ? 'text-bg-primary' : "text-bg-secondary"  ?>">
                             <?php echo $registro['status'] ?>
                         </span>
                     </div>
                     <div class="col-2 my-1 py-1 border-bottom">
-                        <a href="<?php Echo URL ?>reativartarefa?id=<?php echo $registro["id"]; ?>" class="btn btn-success" title="Reabrir tarefa"><i class="bi bi-star-fill"></i></a>
-                        <a href="<?php Echo URL ?>excluirPermanenteTarefa?id=<?php echo $registro["id"]; ?>" class="btn btn-danger mx-3"><i class="bi bi-trash3-fill" title="Excluir Permanentemente"></i></a>
+                    <div class="row pe-3">
+                        <div class="col col-6">
+                            <a href="<?php echo URL ?>finalizartarefa?id=<?= $registro["id"]; ?>" class="btn btn-success" title="Reativar tarefa"><i class="bi bi-star-fill"></i></a>
+                        </div>
+                        <div class="col col-6">
+                            <a href="<?php echo URL ?>deletartarefa?id=<?= $registro["id"]; ?>" class="btn btn-danger mx-3"><i class="bi bi-trash3-fill" title="Excluir Permanentemente"></i></a>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -68,7 +74,7 @@
             <?php
                 }else{
             ?>
-                    <div class="main">
+                    <div class="container">
                         <p>Você não possui Tarefas cadastradas!</p>
                         <p>Começe a organizar seu dia!</p>
                         <a href="<?php echo URL ?>novatarefa" class="btn btn-primary">Cadastrar Tarefa</a>
@@ -80,6 +86,8 @@
             $conexao->close();
         ?>
 
-        <a href="<?php echo URL ?>tarefas" class="btn btn-primary m-5">Voltar</a>
+        <a href="<?php echo URL ?>tarefas" class="btn btn-primary my-5">Voltar</a>
+
+        <hr>
 
 </div>

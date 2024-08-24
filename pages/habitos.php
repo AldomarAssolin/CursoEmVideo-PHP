@@ -25,7 +25,7 @@
         if ($resultado->num_rows > 0) {
     
     ?>
-    <div class="my-5">
+    <div class="my-5 container py-3">
 
         <h3>Lista de Hábitos</h3>
         <p>Cadastre aqui os hábitos que você tem que vencer para melhorar sua vida!</p>

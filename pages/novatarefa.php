@@ -12,11 +12,11 @@
         </div>
         <div class="mb-3">
             <label for="descricao" class="form-label">Descricao da tarefa</label>
-            <textarea type="text" class="form-control" id="descricao" placeholder="Digite o descricao da tarefa" name="descricao" rows="5" style="resize:none"></textarea>
+            <textarea type="text" class="form-control" id="descricao" name="descricao"></textarea>
         </div>
         <div class="mb-3">
             <label for="data" class="form-label">Data da tarefa</label>
-            <input type="date" class="form-control" id="data" placeholder="Digite o data da tarefa" name="data" autofocus>
+            <input type="date" class="form-control" id="data" name="data">
         </div>
 
         <div class="col-12">

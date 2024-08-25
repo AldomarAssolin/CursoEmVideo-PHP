@@ -25,7 +25,7 @@
     --clr-bg: #fafafa !important;
     --clr-links: #0058A8 !important;
     --clr-shadow: 15px 15px 15px #000 !important;
-    --clr-bg-opacity: rgba(0, 0, 0, .65) !important;
+    --clr-bg-opacity: rgba(0, 0, 0, .85) !important;
 
     --bg-btn-github: #A020F0 !important;
     --bg-btn-github--hover: #a64adf !important;
@@ -49,9 +49,11 @@ p, pre{
 }
 
 pre{
+    color: #3e96e7;
     background: var(--clr-bg-opacity);
     border-radius: .75rem;
     text-align: start;
+    padding: 1rem !important;
 }
 
 .btn_link{

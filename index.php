@@ -14,6 +14,15 @@ include_once './config/config.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="shortcut icon" href="<?php echo $images ?>/logos/img.png" type="image/x-icon">
+
+
+    <script src="https://cdn.tiny.cloud/1/9q6ajbxoo2txmfp8zuvgpq42l0lkih9i113swh88se5ftu02/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    
+
+<script src="https://cdn.tiny.cloud/1/9q6ajbxoo2txmfp8zuvgpq42l0lkih9i113swh88se5ftu02/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
+
+
     
 
     <title><?=$site_title?></title>
@@ -22,10 +31,10 @@ include_once './config/config.php';
 
 
     <?php
-    
+
     include_once './layout/layout.php';
-    
-    ?>
+
+?>
 
 
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -80,7 +89,65 @@ include_once './config/config.php';
     </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+  const example_image_upload_handler = (blobInfo, progress) => new Promise((resolve, reject) => {
+  const xhr = new XMLHttpRequest();
+  xhr.withCredentials = false;
+  xhr.open('POST', 'postAcceptor.php');
 
+  xhr.upload.onprogress = (e) => {
+    progress(e.loaded / e.total * 100);
+  };
+
+  xhr.onload = () => {
+    if (xhr.status === 403) {
+      reject({ message: 'HTTP Error: ' + xhr.status, remove: true });
+      return;
+    }
+
+    if (xhr.status < 200 || xhr.status >= 300) {
+      reject('HTTP Error: ' + xhr.status);
+      return;
+    }
+
+    console.log(xhr.responseText.toString);
+    const json = JSON.parse(xhr.responseText);
+
+    if (!json || typeof json.location != 'string') {
+      reject('Invalid JSON: ' + xhr.responseText);
+      return;
+    }
+
+    resolve(json.location);
+  };
+
+  xhr.onerror = () => {
+    reject('Image upload failed due to a XHR Transport error. Code: ' + xhr.status);
+  };
+
+  const formData = new FormData();
+  formData.append('file', blobInfo.blob(), blobInfo.filename());
+
+  xhr.send(formData);
+});
+  tinymce.init({
+    selector: '#descricao',
+    height: 600,
+    plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+    tinycomments_mode: 'embedded',
+    tinycomments_author: 'Author name',
+    images_upload_url: 'postAcceptor.php',
+    mergetags_list: [
+      { value: 'First.Name', title: 'First Name' },
+      { value: 'Email', title: 'Email' },
+    ],
+    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+    images_upload_handler: example_image_upload_handler
+
+});
+
+</script>
 
 </body>
 </html>

@@ -2,26 +2,45 @@
 
 <?php
 
-    $servidor = "localhost";
-    $usuario = "root";
-    $senha = "";
-    $bancodedados = "tarefas";
+    require_once './config/config.php';
 
-    // Cria uma conexão com o banco de dados
-    $conexao = new mysqli( $servidor, $usuario, $senha, $bancodedados);
-    
-    // Verifica a conexão
-    if ($conexao->connect_error) {
-        die("Falha na conexão: " . $conexao->connect_error);
+
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $nome = $_POST["nome"];
+        $descricao = $_POST["descricao"];
+        $data = $_POST["data"];
+
+        if(empty($nome) || empty($descricao) || empty($data)){
+            $errorMsg = "Todos os campos devem ser preenchidos";
+            exit;
+        }
+
+        //escapar os dados para evitar injeções SQL
+        $nome = $conn->real_escape_string($nome);
+        $descricao = $conn->real_escape_string($descricao);
+        $data = $conn->real_escape_string($data);
+
+        //Inserir os dados no banco
+        $sql = "INSERT INTO tarefa (nome, descricao, data) VALUES (?, ?, ?)";
+
+        if($stmt = $conn->prepare($sql)){
+            $stmt->bind_param("sss", $nome, $descricao, $data);
+        }
+
+        if($stmt->execute()){
+            $successMsg = "Tarefa cadastrada com sucesso";
+            header("Location: tarefas");
+            exit;
+        }else{
+            echo "Erro ao preparar a consulta: " . $conn->error;
+        }
     }
 
+    $conn->close();
 
-
-    $nome = $_POST["nome"];
-    $descricao = $_POST["descricao"];
-    $data = $_POST["data"];
     
-
+    
+/*
     if($nome && $descricao && $data){
         // Prepara a declaração SQL para prevenir SQL Injection
         $stmt = $conexao->prepare("INSERT INTO tarefa (nome, descricao, status, data) VALUES (?,?, 'Aberto',?)");
@@ -44,6 +63,6 @@
         http_response_code(400); // Define o código de status HTTP para 400 Bad Request
         echo '<p class="main text-danger">Parâmetros não fornecido!</p>';
     }
-
+*/
 
 ?>

@@ -2,21 +2,11 @@
 
 <?php
 
-    $servidor = "localhost";
-    $usuario = "root";
-    $senha = "";
-    $bancodedados = "tarefas";
+    require_once './config/config.php';
 
-    // Cria uma conexão com o banco de dados
-    $conexao = new mysqli( $servidor, $usuario, $senha, $bancodedados);
-
-    // Verifica a conexão
-    if ($conexao->connect_error) {
-        die("Falha na conexão: " . $conexao->connect_error);
-    }
     // Executa a query da variável $sql
-    $sql = "SELECT id, nome, descricao, status, data FROM tarefa ORDER BY data";
-    $resultado = $conexao->query($sql);
+    $sql = "SELECT id, nome, descricao, status, data, created_at FROM tarefa ORDER BY data";
+    $resultado = $conn->query($sql);
     // Verifica se a query retornou registros
     if ($resultado->num_rows > 0) {
 
@@ -24,42 +14,39 @@
 
 
 
-<div class="container">
+<div class="container px2">
         
-            <h2>Lista de todas as tarefas</h2>
+            <div class="row">
+                <div class="col-7">
+                    <h2>Lista de todas as tarefas</h2>
+                </div>
+                <div class="col-5 text-end">
+                    <a href="<?php echo URL ?>tarefas" class="btn btn-primary my-1 me-0">Tarefas Abertas</a>
+                </div>
+            </div>
             <hr>
 
-            <div class="text-start border-bottom border-success">
-            <div class="row row-cols-4">
-                <div class="col-3 my-1">Data</div>
-                <div class="col-4 my-1">Descrição</div>
-                <div class="col-2 my-1">Status</div>
-                <div class="col-2 my-1">Ações</div>
-            </div>
-            </div>
             <?php
 
                 while($registro = $resultado->fetch_assoc()){
-            
+                    $descricao = nl2br($registro['descricao']); 
+                    $describe = str_replace('\r\n','',$descricao);
+                    $Descb = str_replace('\\','',$describe);
+                    $descricao = str_replace('"','',$Descb);
             ?>
-            <div class="text-start">
-                <div class="row row-cols-4">
-                    <div class="col-3 my-1 py-1 border-bottom"><?php echo $registro['data'] ?></div>
-                    <div class="col-4 my-1 py-1 border-bottom"><p class="text-break"><?php echo $registro['descricao'] ?></p></div>
-                    <div class="col-2 my-1 py-1 border-bottom">
-                        <span class="badge <?php echo $registro['status'] === 'Aberto' ? 'text-bg-primary' : "text-bg-secondary"  ?>">
-                            <?php echo $registro['status'] ?>
-                        </span>
-                    </div>
-                    <div class="col-2 my-1 py-1 border-bottom">
-                    <div class="row pe-3">
-                        <div class="col col-6">
-                            <a href="<?php echo URL ?>finalizartarefa?id=<?= $registro["id"]; ?>" class="btn btn-success" title="Reativar tarefa"><i class="bi bi-star-fill"></i></a>
-                        </div>
-                        <div class="col col-6">
-                            <a href="<?php echo URL ?>deletartarefa?id=<?= $registro["id"]; ?>" class="btn btn-danger mx-3"><i class="bi bi-trash3-fill" title="Excluir Permanentemente"></i></a>
-                        </div>
-                    </div>
+            <div class="border-bottom">
+                <div class="my-1 py-1">
+                    <h2><?php echo $registro['nome'] ?></h2>
+                    <small><?php echo $registro['created_at'] ?></small>
+                    <small class="badge <?php echo $registro['status'] === 'Aberto' ? 'bg-success' : 'bg-secondary' ?> mx-3"><?php echo $registro['status'] ?></small>
+                </div>
+                <div class="">
+                    <?php echo $descricao; ?>
+                </div>
+                <div class="py-3">
+                    <div class=" gap-3 d-md-flex justify-md-content-end d-grid">
+                        <a href="<?php echo URL ?>reativartarefa?id=<?= $registro["id"]; ?>" class="btn btn-success px-5" title="Reativar tarefa"><i class="bi bi-star-fill"></i></a>
+                        <a href="<?php echo URL ?>excluirPermanenteTarefa?id=<?= $registro["id"]; ?>" class="btn btn-danger px-5"><i class="bi bi-trash3-fill" title="Excluir Permanentemente"></i></a>
                     </div>
                 </div>
             </div>
@@ -68,11 +55,7 @@
                 
                 }
             
-            ?>
-            
-
-            <?php
-                }else{
+            }else{
             ?>
                     <div class="container">
                         <p>Você não possui Tarefas cadastradas!</p>
@@ -83,11 +66,7 @@
                     <?php
             } // fim do if
             // Fecha a conexão com o MySQL
-            $conexao->close();
+            $conn->close();
         ?>
-
-        <a href="<?php echo URL ?>tarefas" class="btn btn-primary my-5">Voltar</a>
-
-        <hr>
 
 </div>

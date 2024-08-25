@@ -1,9 +1,17 @@
 <?php
 // Configurações de banco de dados (se você precisar mais tarde)
-$db_host = 'localhost';
-$db_user = 'seu_usuario';
-$db_password = 'sua_senha';
-$db_name = 'seu_banco_de_dados';
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "tarefas";
+
+// Criar a conexão
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar a conexão
+if ($conn->connect_error) {
+    die("Falha na conexão: " . $conn->connect_error);
+}
 
 // URL base do seu site
 //$base_url = 'http://http://localhost/portifolio_PHP/';

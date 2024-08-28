@@ -78,6 +78,9 @@ $arquivo = 'pages/' . $url[0] . '.php';
                     case 'listtarefas':
                         include $arquivo;
                         break;
+                    case 'exibirTarefa':
+                        include $arquivo;
+                        break;
                     default:
                         include 'pages/404.php';
                         break;

@@ -47,7 +47,7 @@
                         <small><?php echo $registro['created_at'] ?></small>
                         <small class="badge bg-success mx-3"><?php echo $registro['status'] ?></small>
                     </div>
-                    <div class="pt-3">
+                    <div class="pt-3 img-center">
                         <?php 
                             echo $descricao;
                         ?>
@@ -56,6 +56,7 @@
                         <div class="gap-3 d-md-flex justify-md-content-end d-grid">
                             <a href="<?php echo URL ?>finalizartarefa?id=<?= $registro["id"]; ?>" class="btn btn-success px-5" title="Marcar como concluído"><i class="bi bi-star-fill"></i></a>
                             <a href="<?php echo URL ?>deletartarefa?id=<?= $registro["id"]; ?>" class="btn btn-danger px-5"><i class="bi bi-trash3-fill" title="Excluir"></i></a>
+                            <a href="<?php echo URL ?>exibirTarefa?id=<?= $registro["id"]; ?>" class="btn btn-info px-5" title="Ver Post"><i class="bi bi-record-circle"></i></i></a>
                         </div>
                     </div>
                 

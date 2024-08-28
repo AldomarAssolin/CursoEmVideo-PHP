@@ -54,6 +54,7 @@ pre{
     border-radius: .75rem;
     text-align: start;
     padding: 1rem !important;
+    overflow-x: scroll;
 }
 
 .btn_link{
